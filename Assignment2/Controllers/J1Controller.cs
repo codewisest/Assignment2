@@ -37,11 +37,25 @@ namespace Assignment2.Controllers
             new Drink() {Name = "No Drink", Calories = 0}
         };
 
+        public class SideOrder
+        {
+            public string Name { get; set; }
+            public int Calories { get; set; }
+        }
+
+        List<SideOrder> sideOrderList = new List<SideOrder>()
+        {
+            new SideOrder() {Name = "Fries", Calories = 100},
+            new SideOrder() {Name = "Baked Potato", Calories = 57},
+            new SideOrder() {Name = "Chef Salad", Calories = 70},
+            new SideOrder() {Name = "No Side Order", Calories = 0}
+        };
+
         [Route("api/j1/menu/{burger}/{drink}/{side}/{desert}")]
         [HttpGet]
         public int Menu(int burger, int drink, int side, int desert)
         {
-            int totalCalories = burgerList[burger].Calories + drinkList[drink].Calories;
+            int totalCalories = burgerList[burger].Calories + drinkList[drink].Calories + sideOrderList[side].Calories;
             return totalCalories;
         }
     }
