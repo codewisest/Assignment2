@@ -9,6 +9,11 @@ namespace Assignment2.Controllers
 {
     public class J1Controller : ApiController
     {
+        public class Burger
+        {
+            public string Name { get; set; }
+            public int Calories { get; set; }
+        }
 
         List<Burger> burgerList = new List<Burger>()
         {
@@ -18,18 +23,27 @@ namespace Assignment2.Controllers
             new Burger() {Name = "NoBurger", Calories = 0}
         };
 
+        public class Drink
+        {
+            public string Name { get; set; }
+            public int Calories { get; set; }
+        }
+
+        List<Drink> drinkList = new List<Drink>()
+        {
+            new Drink() {Name = "Soft Drink", Calories = 130},
+            new Drink() {Name = "Orange Juice", Calories = 160},
+            new Drink() {Name = "Milk", Calories = 118},
+            new Drink() {Name = "No Drink", Calories = 0}
+        };
+
         [Route("api/j1/menu/{burger}/{drink}/{side}/{desert}")]
         [HttpGet]
         public int Menu(int burger, int drink, int side, int desert)
         {
-            return burgerList[burger].Calories;
+            int totalCalories = burgerList[burger].Calories + drinkList[drink].Calories;
+            return totalCalories;
         }
-    }
-
-    public class Burger
-    {
-        public string Name { get; set; }
-        public int Calories { get; set; }
     }
 }
 
@@ -38,3 +52,4 @@ namespace Assignment2.Controllers
 // I thought I could use to represent the problem I am trying to solve
 // even though I dod not really understand it.
 // https://csharp.net-tutorials.com/collections/lists/
+
