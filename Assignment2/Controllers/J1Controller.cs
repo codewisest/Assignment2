@@ -51,11 +51,26 @@ namespace Assignment2.Controllers
             new SideOrder() {Name = "No Side Order", Calories = 0}
         };
 
-        [Route("api/j1/menu/{burger}/{drink}/{side}/{desert}")]
-        [HttpGet]
-        public int Menu(int burger, int drink, int side, int desert)
+        public class Dessert
         {
-            int totalCalories = burgerList[burger].Calories + drinkList[drink].Calories + sideOrderList[side].Calories;
+            public string Name { get; set; }
+            public int Calories { get; set; }
+        }
+
+        List<Dessert> dessertList = new List<Dessert>()
+        {
+            new Dessert() {Name = "Apple Pie", Calories = 167},
+            new Dessert() {Name = "Apple Pie", Calories = 266},
+            new Dessert() {Name = "Apple Pie", Calories = 75},
+            new Dessert() {Name = "Apple Pie", Calories = 0}
+
+        };
+
+        [Route("api/j1/menu/{burger}/{drink}/{side}/{dessert}")]
+        [HttpGet]
+        public int Menu(int burger, int drink, int side, int dessert)
+        {
+            int totalCalories = burgerList[burger - 1].Calories + drinkList[drink - 1].Calories + sideOrderList[side - 1].Calories + dessertList[dessert - 1].Calories;
             return totalCalories;
         }
     }
