@@ -9,9 +9,16 @@ namespace Assignment2.Controllers
 {
     public class J2Controller : ApiController
     {
+        /// <summary>
+        /// determines how many ways two dice can be rolled to give the value of 10.
+        /// <example>api/J2/DiceGame/6/8 -> There are 5 ways to get the sum 10.</example>
+        /// </summary>
+        /// <param name="m">number of sides of one die</param>
+        /// <param name="n">number of sides of the other die</param>
+        /// <returns>a string message of the number of possibilties to get the sum of ten</returns>
         [HttpGet]
-        [Route("api/j2/dicepermutation/{m}/{n}")]
-        public int DicePermutation(int m, int n)
+        [Route("api/j2/DiceGame/{m}/{n}")]
+        public string DiceGame(int m, int n)
         {
             int countSumOfTen = 0;
             int twoDiceSum = 0;
@@ -26,6 +33,8 @@ namespace Assignment2.Controllers
 
             //    }
             //}
+
+            // permutate the two dice
             for(int i = 1; i <= m; i++)
             {
                 for (int j = 1; j <= n; j++)
@@ -37,7 +46,7 @@ namespace Assignment2.Controllers
                     }
                 }
             }
-            return countSumOfTen;
+            return "There are " + countSumOfTen + " ways to get the sum 10";
         }
     }
 }
