@@ -17,7 +17,7 @@ namespace Assignment2.Controllers
         /// <param name="tuneCode">string for tuning harp</param>
         /// <returns>List of strings of harp tuning code</returns>
         [HttpGet]
-        [Route("api/J2/TuneHarp/{tuneCode}")]
+        [Route("api/J3/TuneHarp/{tuneCode}")]
         public List<string> TuneHarp(string tuneCode)
         {
             // create empty
@@ -50,7 +50,7 @@ namespace Assignment2.Controllers
             for (int j = 1; j < result.Length; j++)
             {
                 // dynamically set value fo tune operator i.e tighten or losen
-                tuneOperator = tuneOperatorList[j - 1] == '+' ? "tighten" : "losen";
+                tuneOperator = tuneOperatorList[j - 1] == '+' ? "tighten" : "loosen";
 
                 // extract only alphabets from the split strings
                 resultOnlyAlphabet.Add(Regex.Replace(result[j - 1], @"(?<![a-zA-Z])[^a-zA-Z]|[^a-zA-Z](?![a-zA-Z])", ""));
