@@ -9,6 +9,7 @@ namespace Assignment2.Controllers
 {
     public class J1Controller : ApiController
     {
+        // create list of burger objects
         public class Burger
         {
             public string Name { get; set; }
@@ -23,6 +24,7 @@ namespace Assignment2.Controllers
             new Burger() {Name = "NoBurger", Calories = 0}
         };
 
+        // create list of drink objects
         public class Drink
         {
             public string Name { get; set; }
@@ -37,6 +39,7 @@ namespace Assignment2.Controllers
             new Drink() {Name = "No Drink", Calories = 0}
         };
 
+        // create list of side order objects
         public class SideOrder
         {
             public string Name { get; set; }
@@ -51,6 +54,7 @@ namespace Assignment2.Controllers
             new SideOrder() {Name = "No Side Order", Calories = 0}
         };
 
+        // create list of dessert objects
         public class Dessert
         {
             public string Name { get; set; }
@@ -66,12 +70,21 @@ namespace Assignment2.Controllers
 
         };
 
+        /// <summary>
+        /// computes the total Calories of a meal.
+        /// <example>/api/J1/Menu/4/4/4/4 -> Your total calorie count is 0</example>
+        /// </summary>
+        /// <param name="burger">Integer representing the index burger choice</param>
+        /// <param name="drink">Integer representing the index drink choice</param>
+        /// <param name="side">Integer representing the index side choice</param>
+        /// <param name="dessert">Integer representing the index dessert choice</param>
+        /// <returns>A string message of calorie count</returns>
         [Route("api/j1/menu/{burger}/{drink}/{side}/{dessert}")]
         [HttpGet]
-        public int Menu(int burger, int drink, int side, int dessert)
+        public string Menu(int burger, int drink, int side, int dessert)
         {
             int totalCalories = burgerList[burger - 1].Calories + drinkList[drink - 1].Calories + sideOrderList[side - 1].Calories + dessertList[dessert - 1].Calories;
-            return totalCalories;
+            return "Your total calorie count is " + totalCalories;
         }
     }
 }
